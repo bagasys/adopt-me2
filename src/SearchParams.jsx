@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Pet from "./Pet";
+import useBreedList from "./useBreedList";
+
 const ANIMALS = ["bird", "dog", "cat", "rabbit", "reptile"];
 
 const SearchParams = () => {
@@ -8,10 +10,11 @@ const SearchParams = () => {
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
 
-  const breeds = ["poodle"];
+  const [breeds] = useBreedList(animal);
 
   useEffect(() => {
     requestPets();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function requestPets() {
